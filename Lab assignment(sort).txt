@@ -1,0 +1,202 @@
+
+1. write a c program for Insertion sort algorithm
+#include <stdio.h> 
+void main()
+{
+  int n, array[100], a, d, h;
+  printf("Enter number of elements you want to be entered\n");
+  scanf("%d", &n);
+  printf("Enter %d integers\n", n);
+  for (a = 0; a < n; a++)
+    scanf("%d", &array[a]);
+  for (a = 1 ; a <= n - 1; a++) {
+    d = a;
+ 
+    while ( d > 0 && array[d-1] > array[d]) {
+      h         = array[d];
+      array[d]   = array[d-1];
+      array[d-1] = h;
+ 
+      d--;
+    }
+  }
+ 
+  printf("Sorted array in ascending order:\n");
+  for (a = 0; a <= n - 1; a++) {
+    printf("%d\n", array[a]);
+  }
+}
+
+OUTPUT:
+Enter number of elements
+5
+enter  5 integers
+55
+2
+66
+1
+99
+sorted array in ascending order
+1
+2
+55
+66
+99
+
+2. write a c program for Selection sort algorithm
+#include <stdio.h>
+void main()
+{
+  int array[100], num, m, d, position, temp;
+  printf("Enter number of elements\n");
+  scanf("%d", &num);
+  printf("Enter %d integers\n", num);
+  for (m = 0; m < num; m++)
+    scanf("%d", &array[m]);
+
+  for (m = 0; m < (num - 1); m++)
+  {
+    position = m;
+   
+    for (d = m + 1; d < num; d++)
+    {
+      if (array[position] > array[d])
+        position = d;
+    }
+    if (position != m)
+    {
+      temp = array[m];
+      array[m] = array[position];
+      array[position] = temp;
+    }
+  }
+ 
+  printf("Sorted array in ascending order:\n");
+ 
+  for (m = 0; m < num; m++)
+    printf("%d\n", array[m]);
+}
+
+OUTPUT:
+Enter number of elements
+5
+Enter 5 integers
+33
+66
+11
+99
+44
+Sorted array in ascending order
+11
+33
+44
+66
+99
+
+3.write a c programme for bubble sort algorithm.
+#include <stdio.h> 
+void main()
+{
+  int arr[100], n, i, d, temp;
+  printf("Enter number of elements\n");
+  scanf("%d", &n);
+  printf("Enter %d integers\n", n);
+  for (i = 0; i < n; i++)
+    scanf("%d", &arr[i]);
+ 
+  for (i = 0 ; i < n - 1; i++)
+  {
+    for (d = 0 ; d < n - i- 1; d++)
+    {
+      if (arr[d] > arr[d+1]) /* For decreasing order use < */
+      {
+        temp       = arr[d];
+        arr[d]   = arr[d+1];
+        arr[d+1] = temp;
+      }
+    }
+  }
+  printf("Sorted list in ascending order:\n");
+  for (i = 0; i < n; i++)
+     printf("%d\n", arr[c]);
+}
+
+OUTPUT:
+Enter number of elements 6
+Enter 6 integers
+55
+22
+99
+33
+44
+11
+Sorted list in ascending order:
+11
+22
+33
+44
+55
+99
+
+4.Write a c programme for merge sort algorithm.
+#include <stdio.h>
+
+#define max 10
+
+int M[11] = { 20, 16, 30, 44, 56, 76, 11, 33, 43, 22, 1 };
+int N[10];
+
+void merging(int low, int mid, int high) {
+   int H1, H2, a;
+
+   for(H1 = low, H2 = mid + 1, a = low; H1 <= mid && H2 <= high; a++) {
+      if(M[H1] <= M[H2])
+         N[a] = M[H1++];
+      else
+         N[a] = M[H2++];
+   }
+   
+   while(H1 <= mid)    
+      N[a++] = M[H1++];
+
+   while(H2 <= high)   
+      N[a++] = M[H2++];
+
+   for(a = low; a <= high; a++)
+      M[a] = N[a];
+}
+
+void sort(int low, int high) {
+   int mid;
+   
+   if(low < high) {
+      mid = (low + high) / 2;
+      sort(low, mid);
+      sort(mid+1, high);
+      merging(low, mid, high);
+   } else { 
+      return;
+   }   
+}
+
+int main() { 
+   int a;
+
+   printf("List before sorting\n");
+   
+   for(a = 0; a <= max; a++)
+      printf("%d ", M[a]);
+
+   sort(0, max);
+
+   printf("\nList after sorting\n");
+   
+   for(a = 0; a <= max; a++)
+      printf("%d ", M[a]);
+}
+
+OUTPUT:
+List before sorting
+20 16 30 44 56 76 11 33 43 22 1
+List after sorting
+1 11 16 20 22 30 33 43 44 56 76
